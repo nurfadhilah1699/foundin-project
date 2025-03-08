@@ -1,6 +1,8 @@
 /.phpunit.cache
 /node_modules
 /public/build
+/public/impact/
+/public/sb-admin-2/
 /public/hot
 /public/storage
 /storage/*.key

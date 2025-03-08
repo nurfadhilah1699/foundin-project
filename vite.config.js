@@ -11,4 +11,10 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    build: {
+        cache: {
+            enabled: true,
+            dir: 'node_modules/.vite/cache',
+        },
+    },
 });
