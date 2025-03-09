@@ -10,7 +10,6 @@
 
   <!-- Favicons -->
   <link href="{{ asset('impact') }}/assets/img/favicon-fi.png" rel="icon">
-  <link href="{{ asset('impact') }}/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -67,7 +66,6 @@
           <ul>
             <li><a href="#hero" class="active">Home<br></a></li>
             <li><a href="#about">Explore</a></li>
-            <li><a href="#services">Comunnity Guidlines</a></li>
             <li><a href="#portfolio">Create Post</a></li>
             <li><a href="#contact">Help</a></li>
             @if (Route::has('login'))
