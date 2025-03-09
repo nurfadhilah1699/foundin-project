@@ -10,6 +10,9 @@
         <meta name="author" content="">
 
         <title>Dashboard Admin</title>
+        
+        <!-- Favicons -->
+        <link href="{{ asset('impact') }}/assets/img/favicon-fi.png" rel="icon">
 
         <!-- Custom fonts for this template-->
         <link href="{{ asset("sb-admin-2") }}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
