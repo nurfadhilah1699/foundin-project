@@ -27,8 +27,8 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
+            'email' => ['required', 'string', 'email', 'exists:users,email'], // Memastikan email ada di database
+            'password' => ['required', 'string', 'min:8'], // Menambahkan minimum panjang password
         ];
     }
 
@@ -46,7 +46,12 @@ class LoginRequest extends FormRequest
 
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
+                'password' => 'Password yang Anda masukkan salah.', // Pesan khusus
             ]);
+        }
+
+        if (Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+            \Log::info('User logged in successfully:', ['email' => $this->email]);
         }
 
         RateLimiter::clear($this->throttleKey());
