@@ -22,6 +22,58 @@
 
         <!-- Custom styles for this template-->
         <link href="{{ asset("sb-admin-2") }}/css/sb-admin-2.min.css" rel="stylesheet">
+        <link href="{{ asset("sb-admin-2") }}/css/custom.css" rel="stylesheet">
+
+        <style>
+            :root {
+              --primary: #008374;
+            }
+          
+            .btn-primary {
+              background-color: var(--primary) !important;
+              border-color: var(--primary) !important;
+              color: #fff !important;
+            }
+          
+            .btn-primary:hover {
+              background-color: #006c60 !important;
+              border-color: #006c60 !important;
+            }
+          
+            .bg-primary {
+              background-color: var(--primary) !important;
+            }
+          
+            .text-primary {
+              color: var(--primary) !important;
+            }
+          
+            .border-left-primary {
+              border-left: 0.25rem solid var(--primary) !important;
+            }
+          
+            .sidebar .nav-item.active .nav-link {
+              background-color: var(--primary) !important;
+            }
+          
+            .card-header.bg-primary,
+            .card.border-left-primary {
+              background-color: var(--primary) !important;
+              border-left-color: var(--primary) !important;
+            }
+            .bg-gradient-primary {
+              background-color: var(--primary) !important;
+              background-image: linear-gradient(180deg, var(--primary) 10%, #00594f 100%) !important;
+            }
+            
+            /* Optional: override sidebar-dark and sidebar-light backgrounds if needed */
+            .sidebar-dark {
+              background-color: #004d40 !important;
+            }
+            .sidebar-light {
+              background-color: #e0f2f1 !important;
+            }
+          </style>          
 
     </head>
 
