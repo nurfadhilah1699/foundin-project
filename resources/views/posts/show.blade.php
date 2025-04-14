@@ -47,7 +47,7 @@
               <ul>
                 <li class="d-flex align-items-center"><i class="bi bi-person"></i>{{ $post->user->name }}</li>
                 <li class="d-flex align-items-center"><i class="bi bi-clock"></i>{{ $post->created_at}}</li>
-                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="#comments">{{ $post->comments->count() }} Comments</a></li>
+                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="#comments">{{ $totalCommentsCount }} Comments</a></li>
               </ul>
             </div><!-- End meta top -->
 
@@ -132,8 +132,8 @@
         <div class="search-widget widget-item">
 
           <h3 class="widget-title">Search</h3>
-          <form action="">
-            <input type="text">
+          <form action="{{ route('explore') }}" method="GET">
+            <input type="text" name="search" value="{{ request('search') }}" placeholder="Search posts...">
             <button type="submit" title="Search"><i class="bi bi-search"></i></button>
           </form>
 
@@ -144,12 +144,13 @@
 
           <h3 class="widget-title">Categories</h3>
           <ul class="mt-3">
-            <li><a href="#">General <span>(25)</span></a></li>
-            <li><a href="#">Lifestyle <span>(12)</span></a></li>
-            <li><a href="#">Travel <span>(5)</span></a></li>
-            <li><a href="#">Design <span>(22)</span></a></li>
-            <li><a href="#">Creative <span>(8)</span></a></li>
-            <li><a href="#">Educaion <span>(14)</span></a></li>
+            @foreach(\App\Models\Category::all() as $category)
+                <li>
+                    <a href="{{ route('explore', ['category' => $category->id]) }}">
+                        {{ $category->name }} <span>({{ $category->posts()->count() }})</span>
+                    </a>
+                </li>
+            @endforeach
           </ul>
 
         </div><!--/Categories Widget -->
@@ -159,17 +160,13 @@
 
           <h3 class="widget-title">Tags</h3>
           <ul>
-            <li><a href="#">App</a></li>
-            <li><a href="#">IT</a></li>
-            <li><a href="#">Business</a></li>
-            <li><a href="#">Mac</a></li>
-            <li><a href="#">Design</a></li>
-            <li><a href="#">Office</a></li>
-            <li><a href="#">Creative</a></li>
-            <li><a href="#">Studio</a></li>
-            <li><a href="#">Smart</a></li>
-            <li><a href="#">Tips</a></li>
-            <li><a href="#">Marketing</a></li>
+            @foreach(\App\Models\Tag::all() as $tag)
+                <li>
+                    <a href="{{ route('explore', ['tag' => $tag->id]) }}">
+                        {{ $tag->name }}
+                    </a>
+                </li>
+            @endforeach
           </ul>
 
         </div><!--/Tags Widget -->

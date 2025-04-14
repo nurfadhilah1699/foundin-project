@@ -77,6 +77,27 @@
                 @enderror
             </div>
 
+            <div class="col-md-12">
+                <label for="categories">Category</label>
+                <select class="form-control" id="categories" name="category_id" required>
+                    <option value="">Select a category</option>
+                    @foreach(\App\Models\Category::all() as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+                @error('category_id')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
+            <div class="col-md-12">
+                <label for="tags">Tags</label>
+                <input type="text" class="form-control" id="tags" name="tags" placeholder="Add tags separated by commas">
+                @error('tags')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+
             <div class="col-md-12 text-center">
               <div id="form-loading" style="display:none">Loading</div>
               <div id="form-success" style="display:none" class="sent-message">Post created!</div>
