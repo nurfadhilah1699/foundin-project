@@ -65,7 +65,7 @@
         <nav id="navmenu" class="navmenu">
           <ul>
             <li><a href="/" class="active">Home<br></a></li>
-            <li><a href="#recent-posts">Explore</a></li>
+            <li><a href="/explore">Explore</a></li>
             <li><a href="/posts/create">Create Post</a></li>
             <li><a href="#contact">Help</a></li>
             @if (Route::has('login'))

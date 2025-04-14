@@ -64,4 +64,10 @@ class PostController extends Controller
 
         return redirect()->route('posts.show', $postId);
     }
+
+    public function explore()
+    {
+        $posts = Post::orderBy('created_at', 'desc')->paginate(9);
+        return view('explore', compact('posts'));
+    }
 }
