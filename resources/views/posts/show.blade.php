@@ -47,7 +47,7 @@
               <ul>
                 <li class="d-flex align-items-center"><i class="bi bi-person"></i>{{ $post->user->name }}</li>
                 <li class="d-flex align-items-center"><i class="bi bi-clock"></i>{{ $post->created_at}}</li>
-                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li>
+                <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="#comments">{{ $post->comments->count() }} Comments</a></li>
               </ul>
             </div><!-- End meta top -->
 
@@ -81,67 +81,17 @@
 
         <div class="container">
 
-          <h4 class="comments-count">8 Comments</h4>
+          <h4 class="comments-count" id="comments">{{ $totalCommentsCount }} Comments</h4>
 
-          <div id="comment-1" class="comment">
-            <div class="d-flex">
-              <div class="comment-img"><img src="{{ asset('impact') }}/assets/img/blog/comments-1.jpg" alt=""></div>
-              <div>
-                <h5><a href="">Georgia Reader</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                <time datetime="2020-01-01">01 Jan,2022</time>
-                <p>
-                  Et rerum totam nisi. Molestiae vel quam dolorum vel voluptatem et et. Est ad aut sapiente quis molestiae est qui cum soluta.
-                  Vero aut rerum vel. Rerum quos laboriosam placeat ex qui. Sint qui facilis et.
-                </p>
-              </div>
+          @if($post->comments->count() > 0)
+            <div class="comments-list">
+              @foreach($post->comments as $comment)
+                @include('posts.partials.comment', ['comment' => $comment])
+              @endforeach
             </div>
-          </div><!-- End comment #1 -->
-
-          <div id="comment-2" class="comment">
-            <div class="d-flex">
-              <div class="comment-img"><img src="{{ asset('impact') }}/assets/img/blog/comments-2.jpg" alt=""></div>
-              <div>
-                <h5><a href="">Aron Alvarado</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                <time datetime="2020-01-01">01 Jan,2022</time>
-                <p>
-                  Ipsam tempora sequi voluptatem quis sapiente non. Autem itaque eveniet saepe. Officiis illo ut beatae.
-                </p>
-              </div>
-            </div>
-
-            <div id="comment-reply-1" class="comment comment-reply">
-              <div class="d-flex">
-                <div class="comment-img"><img src="{{ asset('impact') }}/assets/img/blog/comments-3.jpg" alt=""></div>
-                <div>
-                  <h5><a href="">Lynda Small</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                  <time datetime="2020-01-01">01 Jan,2022</time>
-                  <p>
-                    Enim ipsa eum fugiat fuga repellat. Commodi quo quo dicta. Est ullam aspernatur ut vitae quia mollitia id non. Qui ad quas nostrum rerum sed necessitatibus aut est. Eum officiis sed repellat maxime vero nisi natus. Amet nesciunt nesciunt qui illum omnis est et dolor recusandae.
-
-                    Recusandae sit ad aut impedit et. Ipsa labore dolor impedit et natus in porro aut. Magnam qui cum. Illo similique occaecati nihil modi eligendi. Pariatur distinctio labore omnis incidunt et illum. Expedita et dignissimos distinctio laborum minima fugiat.
-
-                    Libero corporis qui. Nam illo odio beatae enim ducimus. Harum reiciendis error dolorum non autem quisquam vero rerum neque.
-                  </p>
-                </div>
-              </div>
-
-              <div id="comment-reply-2" class="comment comment-reply">
-                <div class="d-flex">
-                  <div class="comment-img"><img src="{{ asset('impact') }}/assets/img/blog/comments-4.jpg" alt=""></div>
-                  <div>
-                    <h5><a href="">Sianna Ramsay</a> <a href="#" class="reply"><i class="bi bi-reply-fill"></i> Reply</a></h5>
-                    <time datetime="2020-01-01">01 Jan,2022</time>
-                    <p>
-                      Et dignissimos impedit nulla et quo distinctio ex nemo. Omnis quia dolores cupiditate et. Ut unde qui eligendi sapiente omnis ullam. Placeat porro est commodi est officiis voluptas repellat quisquam possimus. Perferendis id consectetur necessitatibus.
-                    </p>
-                  </div>
-                </div>
-
-              </div><!-- End comment reply #2-->
-
-            </div><!-- End comment reply #1-->
-
-          </div><!-- End comment #2-->
+          @else
+            <p>No comments yet.</p>
+          @endif
 
         </div>
 
@@ -151,17 +101,20 @@
       <section id="comment-form" class="comment-form section">
         <div class="container">
 
-          <form action="">
+          <form action="{{ route('posts.comments.store', $post->id) }}" method="POST" id="commentForm">
+            @csrf
+            <input type="hidden" name="parent_id" id="parent_id" value="">
 
             <h4>Post Comment</h4>
             <div class="row">
               <div class="col form-group">
-                <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
+                <textarea name="content" class="form-control" placeholder="Your Comment*" required></textarea>
               </div>
             </div>
 
             <div class="text-center">
               <button type="submit" class="btn btn-primary">Post Comment</button>
+              <button type="button" class="btn btn-secondary" id="cancelReply" style="display:none;">Cancel Reply</button>
             </div>
 
           </form>
@@ -227,4 +180,28 @@
 
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const commentForm = document.getElementById('commentForm');
+    const parentIdInput = document.getElementById('parent_id');
+    const cancelReplyBtn = document.getElementById('cancelReply');
+
+    document.querySelectorAll('.reply').forEach(function (replyLink) {
+      replyLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        const commentId = this.getAttribute('data-comment-id');
+        parentIdInput.value = commentId;
+        commentForm.scrollIntoView({ behavior: 'smooth' });
+        cancelReplyBtn.style.display = 'inline-block';
+      });
+    });
+
+    cancelReplyBtn.addEventListener('click', function () {
+      parentIdInput.value = '';
+      cancelReplyBtn.style.display = 'none';
+    });
+  });
+</script>
+
 @endsection
