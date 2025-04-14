@@ -1,9 +1,8 @@
 <?php
 
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use App\Http\Controllers\AdminLoginController;
-use App\Http\Controllers\UserLoginController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
@@ -18,7 +17,7 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::get('/profile', function () {
-    // Hanya pengguna yang terverifikasi yang dapat mengakses rute ini
+// Hanya pengguna yang terverifikasi yang dapat mengakses rute ini
 })->middleware(['auth', 'verified']);
 // end verifikasi email
 
@@ -31,9 +30,16 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    //Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    //Post Content
+    Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+    Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 });
+
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 require __DIR__.'/auth.php';
