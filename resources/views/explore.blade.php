@@ -43,7 +43,13 @@
                             @endif
                         </div>
 
-                        <p class="post-category">Category</p> <!-- You can replace with actual category if available -->
+                        <p class="post-category">
+                            @if($post->categories->count() > 0)
+                                {{ $post->categories->first()->name }}
+                            @else
+                                Uncategorized
+                            @endif
+                        </p> <!-- You can replace with actual category if available -->
 
                         <h2 class="title">
                             <a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a>
@@ -76,25 +82,44 @@
                 <ul>
                     {{-- Previous Page Link --}}
                     @if ($posts->onFirstPage())
-                        <li class="disabled"><a href="#"><i class="bi bi-chevron-left"></i></a></li>
+                        <li class="disabled"><a href="#"><</a></li>
                     @else
-                        <li><a href="{{ $posts->previousPageUrl() }}"><i class="bi bi-chevron-left"></i></a></li>
+                        <li><a href="{{ $posts->previousPageUrl() }}"><</a></li>
                     @endif
 
                     {{-- Pagination Elements --}}
-                    @foreach ($posts->getUrlRange(1, $posts->lastPage()) as $page => $url)
-                        @if ($page == $posts->currentPage())
-                            <li><a href="{{ $url }}" class="active">{{ $page }}</a></li>
-                        @else
-                            <li><a href="{{ $url }}">{{ $page }}</a></li>
+                    @php
+                        $start = max($posts->currentPage() - 2, 1);
+                        $end = min($posts->currentPage() + 2, $posts->lastPage());
+                    @endphp
+
+                    @if($start > 1)
+                        <li><a href="{{ $posts->url(1) }}">1</a></li>
+                        @if($start > 2)
+                            <li>...</li>
                         @endif
-                    @endforeach
+                    @endif
+
+                    @for ($page = $start; $page <= $end; $page++)
+                        @if ($page == $posts->currentPage())
+                            <li><a href="{{ $posts->url($page) }}" class="active">{{ $page }}</a></li>
+                        @else
+                            <li><a href="{{ $posts->url($page) }}">{{ $page }}</a></li>
+                        @endif
+                    @endfor
+
+                    @if($end < $posts->lastPage())
+                        @if($end < $posts->lastPage() - 1)
+                            <li>...</li>
+                        @endif
+                        <li><a href="{{ $posts->url($posts->lastPage()) }}">{{ $posts->lastPage() }}</a></li>
+                    @endif
 
                     {{-- Next Page Link --}}
                     @if ($posts->hasMorePages())
-                        <li><a href="{{ $posts->nextPageUrl() }}"><i class="bi bi-chevron-right"></i></a></li>
+                        <li><a href="{{ $posts->nextPageUrl() }}">></a></li>
                     @else
-                        <li class="disabled"><a href="#"><i class="bi bi-chevron-right"></i></a></li>
+                        <li class="disabled"><a href="#">></a></li>
                     @endif
                 </ul>
             </div>
