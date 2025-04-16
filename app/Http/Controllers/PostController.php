@@ -82,6 +82,12 @@ class PostController extends Controller
         return redirect()->route('posts.show', $postId);
     }
 
+    public function getRecentPosts()
+    {
+        $posts = Post::orderBy('created_at', 'desc')->take(3)->get();
+        return view('welcome', compact('posts'));
+    }
+
     public function explore(Request $request)
     {
         $query = Post::query();

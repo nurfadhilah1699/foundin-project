@@ -26,6 +26,23 @@
   <!-- Main CSS File -->
   <link href="{{ asset('impact') }}/assets/css/main.css" rel="stylesheet">
 
+  <!-- Custom Style -->
+  <style>
+    .btn-custom {
+      color: #ffffff;
+      background: #008374;
+      border: 0;
+      padding: 12px 30px;
+      transition: 0.4s;
+      border-radius: 50px;
+    }
+
+    .btn-custom:hover {
+      background: color-mix(in srgb, #008374, transparent 20%);
+      color: color-mix(in srgb, #ffffff, transparent 10%);
+    }
+  </style>
+
   <!-- =======================================================
   * Template Name: Impact
   * Template URL: https://bootstrapmade.com/impact-bootstrap-business-website-template/

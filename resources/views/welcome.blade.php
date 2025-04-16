@@ -75,83 +75,48 @@
 
     <div class="row gy-4">
 
+      @foreach ($posts as $post)
       <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
         <article>
 
           <div class="post-img">
-            <img src="{{ asset('impact') }}/assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+            @if($post->image)
+              <img src="{{ asset('storage/' . $post->image) }}" alt="{{ $post->title }}" class="img-fluid">
+            @else
+              <img src="{{ asset('impact/assets/img/blog/blog-1.jpg') }}" alt="{{ $post->title }}" class="img-fluid">
+            @endif
           </div>
 
-          <p class="post-category">Politics</p>
+          <p class="post-category">
+            @if($post->categories->count() > 0)
+              {{ $post->categories->first()->name }}
+            @else
+              Uncategorized
+            @endif
+          </p>
 
           <h2 class="title">
-            <a href="blog-details.html">Dolorum optio tempore voluptas dignissimos</a>
+            <a href="{{ route('posts.show', $post->id) }}">{{ $post->title }}</a>
           </h2>
 
           <div class="d-flex align-items-center">
-            <img src="{{ asset('impact') }}/assets/img/blog/blog-author.jpg" alt="" class="img-fluid post-author-img flex-shrink-0">
+            <img src="{{ asset('impact/assets/img/blog/blog-author.jpg') }}" alt="Author" class="img-fluid post-author-img flex-shrink-0">
             <div class="post-meta">
-              <p class="post-author">Maria Doe</p>
+              <p class="post-author">{{ $post->user->name ?? 'Unknown' }}</p>
               <p class="post-date">
-                <time datetime="2022-01-01">Jan 1, 2022</time>
+                <time datetime="{{ $post->created_at->toDateString() }}">{{ $post->created_at->format('M d, Y') }}</time>
               </p>
             </div>
           </div>
 
         </article>
       </div><!-- End post list item -->
+      @endforeach
 
-      <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-        <article>
-
-          <div class="post-img">
-            <img src="{{ asset('impact') }}/assets/img/blog/blog-2.jpg" alt="" class="img-fluid">
-          </div>
-
-          <p class="post-category">Sports</p>
-
-          <h2 class="title">
-            <a href="blog-details.html">Nisi magni odit consequatur autem nulla dolorem</a>
-          </h2>
-
-          <div class="d-flex align-items-center">
-            <img src="{{ asset('impact') }}/assets/img/blog/blog-author-2.jpg" alt="" class="img-fluid post-author-img flex-shrink-0">
-            <div class="post-meta">
-              <p class="post-author">Allisa Mayer</p>
-              <p class="post-date">
-                <time datetime="2022-01-01">Jun 5, 2022</time>
-              </p>
-            </div>
-          </div>
-
-        </article>
-      </div><!-- End post list item -->
-
-      <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-        <article>
-
-          <div class="post-img">
-            <img src="{{ asset('impact') }}/assets/img/blog/blog-3.jpg" alt="" class="img-fluid">
-          </div>
-
-          <p class="post-category">Entertainment</p>
-
-          <h2 class="title">
-            <a href="blog-details.html">Possimus soluta ut id suscipit ea ut in quo quia et soluta</a>
-          </h2>
-
-          <div class="d-flex align-items-center">
-            <img src="{{ asset('impact') }}/assets/img/blog/blog-author-3.jpg" alt="" class="img-fluid post-author-img flex-shrink-0">
-            <div class="post-meta">
-              <p class="post-author">Mark Dower</p>
-              <p class="post-date">
-                <time datetime="2022-01-01">Jun 22, 2022</time>
-              </p>
-            </div>
-          </div>
-
-        </article>
-      </div><!-- End post list item -->
+      <!-- Link to Explore Page -->
+      <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="100">
+        <a href="{{ route('explore') }}" class="btn-custom">Telusuri Lebih Lanjut</a>
+      </div>
 
     </div><!-- End recent posts list -->
 

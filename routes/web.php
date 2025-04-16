@@ -21,9 +21,7 @@ Route::get('/profile', function () {
 })->middleware(['auth', 'verified']);
 // end verifikasi email
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PostController::class, 'getRecentPosts'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
