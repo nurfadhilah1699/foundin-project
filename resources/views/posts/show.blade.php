@@ -39,7 +39,7 @@
 
             @if(!empty($post->image))
             <div class="post-img">
-              <img src="{{ asset($post->image) }}" alt="Post Image" class="img-fluid">
+              <img src="{{ asset('storage/' . $post->image) }}" alt="Post Image" class="img-fluid">
             </div>
             @endif
 

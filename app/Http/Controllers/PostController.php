@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class PostController extends Controller
 {
@@ -27,10 +28,29 @@ class PostController extends Controller
         $data = $request->only(['title', 'description']);
         $data['user_id'] = auth()->id();
 
-        if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $imageName = time() . '_' . $request->file('image')->getClientOriginalName();
-            $imagePath = $request->file('image')->storeAs('images', $imageName, 'public');
-            $data['image'] = $imagePath;
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            if ($file->isValid()) {
+                // Workaround for Laravel 11 storage issue: manually move the file
+                $destinationPath = storage_path('app/public/images');
+                $fileName = time() . '_' . $file->getClientOriginalName();
+
+                // Ensure destination directory exists
+                if (!file_exists($destinationPath)) {
+                    mkdir($destinationPath, 0755, true);
+                }
+
+                $moved = $file->move($destinationPath, $fileName);
+
+                if ($moved) {
+                    // Store relative path to the image
+                    $data['image'] = 'images/' . $fileName;
+                } else {
+                    return back()->withErrors(['image' => 'Failed to move the uploaded image.'])->withInput();
+                }
+            } else {
+                return back()->withErrors(['image' => 'Uploaded image file is not valid.'])->withInput();
+            }
         }        
 
         $post = Post::create($data);
