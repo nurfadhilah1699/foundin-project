@@ -24,19 +24,21 @@ class PostController extends Controller
             'tags' => 'nullable|string',
         ]);
 
-        $data = $request->only(['title', 'description', 'category_id']);
+        $data = $request->only(['title', 'description']);
         $data['user_id'] = auth()->id();
 
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $imageName = time() . '_' . $request->file('image')->getClientOriginalName();
             $imagePath = $request->file('image')->storeAs('images', $imageName, 'public');
             $data['image'] = $imagePath;
-        }
+        }        
 
         $post = Post::create($data);
 
         // Attach category
-        $post->categories()->attach($request->input('category_id'));
+        if ($request->has('category_id')) {
+            $post->categories()->sync([$request->input('category_id')]);
+        }
 
         // Handle tags
         $tags = $request->input('tags');
