@@ -62,14 +62,24 @@
             <div class="meta-bottom">
               <i class="bi bi-folder"></i>
               <ul class="cats">
-                <li><a href="#">Business</a></li>
+                <li>
+                  @forelse ($post->categories as $category)
+                    <a href="{{ route('explore', ['category' => $category->id]) }}">{{ $category->name }}</a>
+                  @empty
+                    <a href="#">No category</a>
+                  @endforelse
+                </li>
               </ul>
 
               <i class="bi bi-tags"></i>
               <ul class="tags">
-                <li><a href="#">Creative</a></li>
-                <li><a href="#">Tips</a></li>
-                <li><a href="#">Marketing</a></li>
+                @forelse ($post->tags as $tag)
+                  <li>
+                    <a href="{{ route('explore', ['tag' => $tag->id]) }}">{{ $tag->name }}</a>
+                  </li>
+                @empty
+                  <li><em>No tags</em></li>
+                @endforelse
               </ul>
             </div><!-- End meta bottom -->
 

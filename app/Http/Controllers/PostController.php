@@ -80,7 +80,8 @@ class PostController extends Controller
     {
         $post = Post::with(['comments' => function ($query) {
             $query->whereNull('parent_id')->with('replies.user')->with('user');
-        }])->findOrFail($id);
+            },
+        ])->findOrFail($id);
 
         $totalCommentsCount = Comment::where('post_id', $id)->count();
 
