@@ -87,7 +87,34 @@
             <li><a href="#contact">Help</a></li>
             @if (Route::has('login'))
                 @auth
-                    <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                  @if (Auth::user()->role == 'admin')
+                  <li class="dropdown"><a href="#"><span>{{ Auth::user()->name }}</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                    <ul>
+                      <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                      <li><a href="{{ route('profile.edit') }}">Profile</a></li>
+                      <li>
+                        <form action="{{ route('logout') }}" method="POST">
+                          @csrf
+                          <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                  this.closest('form').submit();">Logout</a>
+                        </form>
+                      </li>
+                    </ul>
+                  </li>
+                  @else
+                    <li class="dropdown"><a href="#"><span>{{ Auth::user()->name }}</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
+                      <ul>
+                        <li><a href="{{ route('profile.edit') }}">Profile</a></li>
+                        <li>
+                          <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                    this.closest('form').submit();">Logout</a>
+                          </form>
+                        </li>
+                      </ul>
+                    </li> 
+                  @endif
                 @else
                     <li><a href="{{ route('login') }}">Login</a></li>
 

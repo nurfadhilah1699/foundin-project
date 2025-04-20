@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         // DB::table('posts')->truncate();
         // DB::table('categories')->truncate();
         // DB::table('tags')->truncate();
+        // DB::table('users')->truncate();
 
         // Re-enable foreign key checks
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');

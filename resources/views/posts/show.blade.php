@@ -47,7 +47,7 @@
 
             <div class="meta-top">
               <ul>
-                <li class="d-flex align-items-center"><i class="bi bi-person"></i>{{ $post->user->name }}</li>
+                <li class="d-flex align-items-center"><i class="bi bi-person"></i>{{ $post->user ? $post->user->name : 'Unknown' }}</li>
                 <li class="d-flex align-items-center"><i class="bi bi-clock"></i>{{ $post->created_at}}</li>
                 <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="#comments">{{ $totalCommentsCount }} Comments</a></li>
               </ul>

@@ -27,28 +27,28 @@
         <div class="col-xl-3 col-md-6">
           <div class="icon-box">
             <div class="icon"><i class="bi bi-pc-display-horizontal"></i></div>
-            <h4 class="title"><a href="" class="stretched-link">Front-End Web</a></h4>
+            <h4 class="title"><a href="/explore?category=1" class="stretched-link">Front-End Web</a></h4>
           </div>
         </div><!--End Icon Box -->
 
         <div class="col-xl-3 col-md-6">
           <div class="icon-box">
             <div class="icon"><i class="bi bi-database-gear"></i></div>
-            <h4 class="title"><a href="" class="stretched-link">Back-End Web</a></h4>
+            <h4 class="title"><a href="/explore?category=2" class="stretched-link">Back-End Web</a></h4>
           </div>
         </div><!--End Icon Box -->
 
         <div class="col-xl-3 col-md-6">
           <div class="icon-box">
             <div class="icon"><i class="bi bi-robot"></i></div>
-            <h4 class="title"><a href="" class="stretched-link">Machine Learning</a></h4>
+            <h4 class="title"><a href="/explore?category=3" class="stretched-link">Machine Learning</a></h4>
           </div>
         </div><!--End Icon Box -->
 
         <div class="col-xl-3 col-md-6">
           <div class="icon-box">
             <div class="icon"><i class="bi bi-android2"></i></div>
-            <h4 class="title"><a href="" class="stretched-link">Android Dev</a></h4>
+            <h4 class="title"><a href="/explore?category=4" class="stretched-link">Android Dev</a></h4>
           </div>
         </div><!--End Icon Box -->
 
