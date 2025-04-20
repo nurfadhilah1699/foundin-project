@@ -15,12 +15,14 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 //=== Homepage ===//
 Route::get('/', [PostController::class, 'getRecentPosts'])->name('home');
 
-
-Route::middleware(['auth', 'verified'])->group(function () {
-    //Dashboard Admin
+//=== Admin Routes ===//
+Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.dashboard'); })->name('dashboard');
+}); 
 
+
+Route::middleware(['auth', 'verified'])->group(function () {
     //Profile
     Route::get('/profile', function () {
         // Hanya pengguna yang terverifikasi yang dapat mengakses rute ini
