@@ -6,28 +6,33 @@ use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
-// verifikasi email
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
-
+//=== Verifikasi email ===//
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
     return redirect('/home');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
-Route::get('/profile', function () {
-// Hanya pengguna yang terverifikasi yang dapat mengakses rute ini
-})->middleware(['auth', 'verified']);
-// end verifikasi email
-
+//=== Homepage ===//
 Route::get('/', [PostController::class, 'getRecentPosts'])->name('home');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth', 'verified'])->group(function () {
+    //Dashboard Admin
+    Route::get('/dashboard', function () {
+        return view('admin.dashboard'); })->name('dashboard');
+
+    //Profile
+    Route::get('/profile', function () {
+        // Hanya pengguna yang terverifikasi yang dapat mengakses rute ini
+    });
+
+});
 
 Route::middleware('auth')->group(function () {
+    //Email Verification 
+    Route::get('/email/verify', function () {
+        return view('auth.verify-email');})->name('verification.notice');
+
     //Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -38,6 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 });
 
+//=== User Post, Comment and Explore ===//
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 Route::get('/explore', [PostController::class, 'explore'])->name('explore');
