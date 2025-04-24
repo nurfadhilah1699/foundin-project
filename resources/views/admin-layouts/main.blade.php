@@ -118,7 +118,7 @@
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
         <a href="/" class="brand-link">
-        <img src="{{ asset('impact') }}/assets/img/favicon-fi.png" alt="FoundIn Logo" class="brand-image" style="opacity: .9">
+        <img src="{{ asset('impact') }}/assets/img/favicon-fi.png" alt="FoundIn Logo" class="brand-image">
         <span class="brand-text font-weight-light">FoundIn</span>
         </a>
 
@@ -151,8 +151,8 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
-            <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
+            <li class="nav-item">
+                <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                     Dashboard
@@ -177,60 +177,36 @@
                 </p>
                 </a>
                 <ul class="nav nav-treeview">
-                <li class="nav-item">
-                    <a href="/admin/users" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Users</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ asset('admin-lte') }}/pages/UI/general.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>General</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ asset('admin-lte') }}/pages/UI/icons.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Icons</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ asset('admin-lte') }}/pages/UI/buttons.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Buttons</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ asset('admin-lte') }}/pages/UI/sliders.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Sliders</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ asset('admin-lte') }}/pages/UI/modals.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Modals & Alerts</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ asset('admin-lte') }}/pages/UI/navbar.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Navbar & Tabs</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ asset('admin-lte') }}/pages/UI/timeline.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Timeline</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ asset('admin-lte') }}/pages/UI/ribbons.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Ribbons</p>
-                    </a>
-                </li>
+                    <li class="nav-item">
+                        <a href="/admin/users" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Users</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ asset('admin-lte') }}/pages/UI/general.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Post Contents</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ asset('admin-lte') }}/pages/UI/icons.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Comments</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ asset('admin-lte') }}/pages/UI/buttons.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Categories</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ asset('admin-lte') }}/pages/UI/sliders.html" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Tags</p>
+                        </a>
+                    </li>
                 </ul>
             </li>
             <li class="nav-item">
