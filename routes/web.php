@@ -4,6 +4,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdminUserController;
 use Illuminate\Http\Request;
 
 //=== Verifikasi email ===//
@@ -18,7 +19,9 @@ Route::get('/', [PostController::class, 'getRecentPosts'])->name('home');
 //=== Admin Routes ===//
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/dashboard', function () {
-        return view('admin.dashboard'); })->name('dashboard');
+        return view('admin.admin-dashboard'); })->name('dashboard');
+
+    Route::get('/admin/users', [AdminUserController::class, 'index'])->name('admin.users.index');
 }); 
 
 
