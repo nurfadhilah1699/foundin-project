@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Admin | Dashboard</title>
+  <title>Admin | @yield('title', 'Dashboard' )</title>
 
   <link rel="icon" href="{{ asset('impact') }}/assets/img/favicon-fi.png" type="image/png" />
 
@@ -152,7 +152,7 @@
             <!-- Add icons to the links using the .nav-icon class
                 with font-awesome or any other icon font library -->
             <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="/dashboard" class="nav-link">
                 <i class="nav-icon fas fa-tachometer-alt"></i>
                 <p>
                     Dashboard
@@ -184,7 +184,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ asset('admin-lte') }}/pages/UI/general.html" class="nav-link">
+                        <a href="/admin/posts" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Post Contents</p>
                         </a>

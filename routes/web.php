@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminPostController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
@@ -22,6 +23,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
         return view('admin.admin-dashboard'); })->name('dashboard');
 
     Route::get('/admin/users', [AdminUserController::class, 'index'])->name('admin.users.index');
+    Route::get('/admin/posts', [AdminPostController::class, 'index'])->name('admin.posts.index');
 }); 
 
 

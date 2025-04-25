@@ -1,5 +1,7 @@
 @extends('admin-layouts.main')
 
+@section('title')
+
 @section('header-title')
 
 @section('content')
