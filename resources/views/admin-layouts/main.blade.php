@@ -190,7 +190,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ asset('admin-lte') }}/pages/UI/icons.html" class="nav-link">
+                        <a href="/admin/comments" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Comments</p>
                         </a>

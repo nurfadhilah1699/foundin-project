@@ -5,7 +5,7 @@
 @section('header-title', 'Post Contents')
 
 @section('content')
-<section class="content">
+  <section class="content">
     <div class="row">
       <div class="col-md-12">
         <div class="card card-info">
