@@ -170,7 +170,7 @@
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-table"></i>
+                <i class="nav-icon fas fa-database"></i>
                 <p>
                     Data Tables
                     <i class="fas fa-angle-left right"></i>
@@ -696,6 +696,9 @@
     <script src="{{ asset('admin-lte') }}/plugins/chart.js/Chart.min.js"></script>
     <!-- Sparkline -->
     <script src="{{ asset('admin-lte') }}/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="{{ asset('admin-lte') }}/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="{{ asset('admin-lte') }}/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
     <!-- jQuery Knob Chart -->
     <script src="{{ asset('admin-lte') }}/plugins/jquery-knob/jquery.knob.min.js"></script>
     <!-- daterangepicker -->
@@ -709,7 +712,6 @@
     <script src="{{ asset('admin-lte') }}/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('admin-lte') }}/dist/js/adminlte.js"></script>
-    <script src="{{ asset('admin-lte') }}/dist/js/pages/dashboard.js"></script>
     <!-- Ion Icons -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
