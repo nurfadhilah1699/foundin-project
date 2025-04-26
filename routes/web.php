@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminPostController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -26,6 +27,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/admin/users', [AdminUserController::class, 'index'])->name('admin.users.index');
     Route::get('/admin/posts', [AdminPostController::class, 'index'])->name('admin.posts.index');
     Route::get('/admin/comments', [AdminCommentController::class, 'index'])->name('admin.comments.index');
+    Route::get('/admin/categories', [AdminCategoryController::class, 'index'])->name('admin.categories.index');
 }); 
 
 

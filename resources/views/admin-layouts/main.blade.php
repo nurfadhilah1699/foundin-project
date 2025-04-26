@@ -186,7 +186,7 @@
                     <li class="nav-item">
                         <a href="/admin/posts" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Post Contents</p>
+                        <p>Post Content</p>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -196,7 +196,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ asset('admin-lte') }}/pages/UI/buttons.html" class="nav-link">
+                        <a href="/admin/categories" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Categories</p>
                         </a>

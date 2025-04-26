@@ -1,16 +1,16 @@
 @extends('admin-layouts.main')
 
-@section('title', 'Post Content')
+@section('title', 'Categories')
 
-@section('header-title', 'Post Content')
+@section('header-title', 'Categories')
 
 @section('content')
-  <section class="content">
+<section class="content">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-6">
         <div class="card card-info">
           <div class="card-header">
-            <h3 class="card-title">Post Content List</h3>
+            <h3 class="card-title">Categories List</h3>
 
             <div class="card-tools">
               <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
@@ -23,28 +23,17 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Author</th>
-                  <th>Image</th>
-                  <th>Title</th>
-                  <th>Description</th>
                   <th>Category</th>
+                  <th>Total Content</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                @foreach ($posts as $index => $post)
+                @foreach ($categories as $index => $category)
                 <tr>
                   <td>{{ $index + 1 }}</td>
-                  <td>{{ $post->user ? $post->user->name : 'Unknown' }}</td>
-                  <td><img src="{{ asset('storage/' . $post->image) }}" alt="Post Image" height="50"></td>
-                  <td>{{ $post->title}}</td>
-                  <td>{{ $post->description}}</td>
-                  <td>@forelse ($post->categories as $category)
-                        {{ $category->name }}
-                      @empty
-                        No category
-                      @endforelse
-                  </td>
+                  <td>{{ $category->name }}</td>
+                  <td>{{ $category->posts_count }} Content</td>
                   <td>
                     <div class="btn-group btn-group-sm">
                       <a href="#" class="btn btn-info"><i class="fas fa-edit"></i></a>
@@ -55,8 +44,8 @@
                 @endforeach
               </tbody>
             </table>
-            @if($posts->isEmpty())
-                <p>No posts found.</p>
+            @if($categories->isEmpty())
+                <p>No categories found.</p>
             @endif
           </div>
           <!-- /.card-body -->
