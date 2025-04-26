@@ -202,7 +202,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{ asset('admin-lte') }}/pages/UI/sliders.html" class="nav-link">
+                        <a href="/admin/tags" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
                         <p>Tags</p>
                         </a>

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminPostController;
+use App\Http\Controllers\Admin\AdminTagController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
@@ -28,6 +29,7 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/admin/posts', [AdminPostController::class, 'index'])->name('admin.posts.index');
     Route::get('/admin/comments', [AdminCommentController::class, 'index'])->name('admin.comments.index');
     Route::get('/admin/categories', [AdminCategoryController::class, 'index'])->name('admin.categories.index');
+    Route::get('/admin/tags', [AdminTagController::class, 'index'])->name('admin.tags.index');
 }); 
 
 
