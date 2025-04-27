@@ -25,7 +25,14 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.admin-dashboard'); })->name('dashboard');
 
+    //Users
     Route::get('/admin/users', [AdminUserController::class, 'index'])->name('admin.users.index');
+    Route::post('/admin/users', [AdminUserController::class, 'store'])->name('admin.users.store');
+    Route::post('/admin/users/verify-email', [AdminUserController::class, 'verifyEmail'])->name('admin.users.verifyEmail');
+    Route::put('/admin/users/{id}', [AdminUserController::class, 'update'])->name('admin.users.update');
+    Route::delete('/admin/users/{id}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
+
+
     Route::get('/admin/posts', [AdminPostController::class, 'index'])->name('admin.posts.index');
     Route::get('/admin/comments', [AdminCommentController::class, 'index'])->name('admin.comments.index');
     Route::get('/admin/categories', [AdminCategoryController::class, 'index'])->name('admin.categories.index');
