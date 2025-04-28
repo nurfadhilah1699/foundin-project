@@ -32,8 +32,13 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::put('/admin/users/{id}', [AdminUserController::class, 'update'])->name('admin.users.update');
     Route::delete('/admin/users/{id}', [AdminUserController::class, 'destroy'])->name('admin.users.destroy');
 
-
+    //Posts
     Route::get('/admin/posts', [AdminPostController::class, 'index'])->name('admin.posts.index');
+    Route::post('/admin/posts', [AdminPostController::class, 'store'])->name('admin.posts.store');
+    Route::put('/admin/posts/{id}', [AdminPostController::class, 'update'])->name('admin.posts.update');
+    Route::delete('/admin/posts/{id}', [AdminPostController::class, 'destroy'])->name('admin.posts.destroy');
+
+
     Route::get('/admin/comments', [AdminCommentController::class, 'index'])->name('admin.comments.index');
     Route::get('/admin/categories', [AdminCategoryController::class, 'index'])->name('admin.categories.index');
     Route::get('/admin/tags', [AdminTagController::class, 'index'])->name('admin.tags.index');

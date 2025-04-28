@@ -46,13 +46,13 @@
                       <button type="button" class="btn btn-info btn-sm d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;" data-toggle="modal" data-target="#editModal-{{ $user->id }}">
                         <i class="fas fa-edit"></i>
                       </button>
-                      <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST">
+                      <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" onclick="return confirmDelete({{ $user->id }})">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger btn-sm d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;" onclick="confirmDelete({{ $user->id }})">
+                        <button type="submit" class="btn btn-danger btn-sm d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
                           <i class="fas fa-trash"></i>
                         </button>
-                    </form>
+                      </form>
                     </div>
                   </td>
                 <tr>
@@ -161,10 +161,6 @@
 
 <script>
   function confirmDelete(userId) {
-      // Tampilkan alert konfirmasi
-      if (confirm('Apakah kamu yakin ingin menghapus user ini?')) {
-          // Jika ya, kirimkan form untuk menghapus data
-          document.getElementById('delete-form-' + userId).submit();
-      }
-  }
+    return confirm('Apakah kamu yakin ingin menghapus user ini?');
+}
 </script>

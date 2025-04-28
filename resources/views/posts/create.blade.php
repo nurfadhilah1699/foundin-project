@@ -58,7 +58,7 @@
 
             <div class="col-md-12">
                 <input type="file" class="form-control" id="image" name="image">
-                @error('title')
+                @error('image')
                   <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
@@ -72,7 +72,7 @@
 
             <div class="col-md-12">
                 <textarea class="form-control" id="description" name="description" rows="5" placeholder="Enter description" required></textarea>
-                @error('title')
+                @error('description')
                   <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
