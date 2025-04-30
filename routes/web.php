@@ -49,6 +49,9 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::delete('/admin/categories/{id}', [AdminCategoryController::class, 'destroy'])->name('admin.categories.destroy');
 
     Route::get('/admin/tags', [AdminTagController::class, 'index'])->name('admin.tags.index');
+    Route::post('/admin/tags', [AdminTagController::class, 'store'])->name('admin.tags.store');
+    Route::put('/admin/tags/{id}', [AdminTagController::class, 'update'])->name('admin.tags.update');
+    Route::delete('/admin/tags/{id}', [AdminTagController::class, 'destroy'])->name('admin.tags.destroy');
 }); 
 
 

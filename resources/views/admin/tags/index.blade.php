@@ -36,8 +36,16 @@
                   <td>{{ $tag->posts_count }} Content</td>
                   <td>
                     <div class="btn-group btn-group-sm">
-                      <a href="#" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                      <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                      <button type="button" class="btn btn-info btn-sm d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;" data-toggle="modal" data-target="#editModal-{{ $tag->id }}">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <form action="{{ route('admin.tags.destroy', $tag->id) }}" method="POST" onclick="return confirmDelete({{ $tag->id }})">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </form>
                     </div>
                   </td>
                 <tr>
@@ -52,6 +60,20 @@
         </div>
         <!-- /.card -->
       </div>
+
+      <div class="col-md-4">
+        @include('admin.tags.add')
+      </div>
     </div>
+
+    @foreach ($tags as $tag)
+      @include('admin.tags.edit')
+    @endforeach
   </section>
 @endsection
+
+<script>
+  function confirmDelete(tagId) {
+    return confirm('Apakah kamu yakin ingin menghapus tag ini?');
+  }
+</script>
