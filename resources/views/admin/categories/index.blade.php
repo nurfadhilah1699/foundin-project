@@ -7,16 +7,10 @@
 @section('content')
 <section class="content">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-8">
         <div class="card card-info">
           <div class="card-header">
             <h3 class="card-title">Categories List</h3>
-
-            <div class="card-tools">
-              <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                <i class="fas fa-minus"></i>
-              </button>
-            </div>
           </div>
           <div class="card-body p-0">
             <table class="table">
@@ -36,8 +30,16 @@
                   <td>{{ $category->posts_count }} Content</td>
                   <td>
                     <div class="btn-group btn-group-sm">
-                      <a href="#" class="btn btn-info"><i class="fas fa-edit"></i></a>
-                      <a href="#" class="btn btn-danger"><i class="fas fa-trash"></i></a>
+                      <button type="button" class="btn btn-info btn-sm d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;" data-toggle="modal" data-target="#editModal-{{ $category->id }}">
+                        <i class="fas fa-edit"></i>
+                      </button>
+                      <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST" onclick="return confirmDelete({{ $category->id }})">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </form>
                     </div>
                   </td>
                 <tr>
@@ -52,6 +54,20 @@
         </div>
         <!-- /.card -->
       </div>
+
+      <div class="col-md-4">
+        @include('admin.categories.add')
+      </div>
     </div>
+
+    @foreach ($categories as $category)
+      @include('admin.categories.edit')
+    @endforeach
   </section>
 @endsection
+
+<script>
+  function confirmDelete(userId) {
+    return confirm('Apakah kamu yakin ingin menghapus user ini?');
+  }
+</script>

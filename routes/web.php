@@ -42,7 +42,12 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/admin/comments', [AdminCommentController::class, 'index'])->name('admin.comments.index');
     Route::delete('/admin/comments/{id}', [AdminCommentController::class, 'destroy'])->name('admin.comments.destroy');
 
+    //Categories
     Route::get('/admin/categories', [AdminCategoryController::class, 'index'])->name('admin.categories.index');
+    Route::post('/admin/categories', [AdminCategoryController::class, 'store'])->name('admin.categories.store');
+    Route::put('/admin/categories/{id}', [AdminCategoryController::class, 'update'])->name('admin.categories.update');
+    Route::delete('/admin/categories/{id}', [AdminCategoryController::class, 'destroy'])->name('admin.categories.destroy');
+
     Route::get('/admin/tags', [AdminTagController::class, 'index'])->name('admin.tags.index');
 }); 
 

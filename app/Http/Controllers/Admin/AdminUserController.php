@@ -38,7 +38,7 @@ class AdminUserController extends Controller
 
         event(new Registered($user));
 
-        return redirect()->route('admin.users.index')->with('success', 'User berhasil ditambahkan. Email verifikasi telah dikirim.');;
+        return redirect()->route('admin.users.index')->with('success', 'User berhasil ditambahkan. Email verifikasi telah dikirim.');
     }
 
     public function verifyEmail(Request $request)
