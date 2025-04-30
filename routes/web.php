@@ -38,8 +38,10 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::put('/admin/posts/{id}', [AdminPostController::class, 'update'])->name('admin.posts.update');
     Route::delete('/admin/posts/{id}', [AdminPostController::class, 'destroy'])->name('admin.posts.destroy');
 
-
+    //Comments
     Route::get('/admin/comments', [AdminCommentController::class, 'index'])->name('admin.comments.index');
+    Route::delete('/admin/comments/{id}', [AdminCommentController::class, 'destroy'])->name('admin.comments.destroy');
+
     Route::get('/admin/categories', [AdminCategoryController::class, 'index'])->name('admin.categories.index');
     Route::get('/admin/tags', [AdminTagController::class, 'index'])->name('admin.tags.index');
 }); 

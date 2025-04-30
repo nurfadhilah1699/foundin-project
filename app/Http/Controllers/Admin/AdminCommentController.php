@@ -13,4 +13,11 @@ class AdminCommentController extends Controller
         $comments = Comment::all();
         return view('admin.comments.index', compact('comments'));
     }
+
+    public function destroy($id) {
+        $comment = Comment::findOrFail($id);
+        $comment->delete();
+
+        return redirect()->route('admin.comments.index')->with('success', 'Komentar berhasil dihapus.');
+    }
 }

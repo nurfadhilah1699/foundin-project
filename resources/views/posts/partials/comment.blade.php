@@ -5,7 +5,7 @@
     </div>
     <div>
       <h5>
-        <a href="#">{{ $comment->user ? $comment->user->name : 'Anonymous' }}</a>
+        <a href="#">{{ $comment->user ? $comment->user->name : 'Unknown' }}</a>
         <a href="#" class="reply" data-comment-id="{{ $comment->id }}"><i class="bi bi-reply-fill"></i> Reply</a>
       </h5>
       <time datetime="{{ $comment->created_at }}">{{ $comment->created_at->format('d M, Y') }}</time>

@@ -34,11 +34,21 @@
                 @foreach ($comments as $index => $comment)
                 <tr>
                   <td>{{ $index + 1 }}</td>
-                  <td>{{ $comment->user ? $comment->user->name : 'Anonymous' }}</td>
+                  <td>{{ $comment->user ? $comment->user->name : 'Unknown' }}</td>
                   <td>{{ $comment->post ? $comment->post->title : '' }}</td>
                   <td>{{ $comment->content }}</td>
                   <td><time datetime="{{ $comment->created_at }}">{{ $comment->created_at->format('d-M-Y') }}</time></td>
-                  <td><a href="#" class="btn-sm btn-danger"><i class="fas fa-trash"></i></a></td>
+                  <td>
+                    <div class="btn-group btn-group-sm">
+                      <form action="{{ route('admin.comments.destroy', $comment->id) }}" method="POST" onsubmit="return confirmDelete({{ $comment->id }})">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger btn-sm d-flex align-items-center justify-content-center" style="width: 36px; height: 36px;">
+                          <i class="fas fa-trash"></i>
+                        </button>
+                      </form>
+                    </div>
+                  </td>
                 <tr>
                 @endforeach
               </tbody>
@@ -54,3 +64,9 @@
     </div>
   </section>
 @endsection
+
+<script>
+  function confirmDelete(commentId) {
+    return confirm('Apakah kamu yakin ingin menghapus komentar ini?');
+}
+</script>
