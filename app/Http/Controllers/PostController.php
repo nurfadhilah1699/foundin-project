@@ -137,7 +137,7 @@ class PostController extends Controller
             });
         }
 
-        $posts = $query->orderBy('created_at', 'desc')->paginate(9)->withQueryString();
+        $posts = $query->orderBy('created_at', 'desc')->paginate(6)->withQueryString();
 
         return view('explore', compact('posts'));
     }
