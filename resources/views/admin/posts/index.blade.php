@@ -81,11 +81,13 @@
       </div>
     </div>
 
-    @include('admin.posts.add')
-    @include('admin.posts.edit')
   </section>
 @endsection
-
+  
+@section('modals')    
+  @include('admin.posts.add')
+  @include('admin.posts.edit')
+@endsection
 <script>
   function confirmDelete(postId) {
     return confirm('Apakah kamu yakin ingin menghapus konten ini?');

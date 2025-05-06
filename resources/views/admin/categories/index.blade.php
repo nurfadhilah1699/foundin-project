@@ -60,10 +60,13 @@
       </div>
     </div>
 
-    @foreach ($categories as $category)
-      @include('admin.categories.edit')
-    @endforeach
   </section>
+@endsection
+  
+@section('modals')    
+  @foreach ($categories as $category)
+    @include('admin.categories.edit')
+  @endforeach
 @endsection
 
 <script>

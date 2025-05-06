@@ -5,9 +5,10 @@
 @section('header-title', 'Tags')
 
 @section('content')
+
 <section class="content">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-8">
         <div class="card card-info">
           <div class="card-header">
             <h3 class="card-title">Tags List</h3>
@@ -48,28 +49,27 @@
                       </form>
                     </div>
                   </td>
-                <tr>
+                </tr>
                 @endforeach
               </tbody>
             </table>
-            @if($tags->isEmpty())
-                <p>No tags found.</p>
-            @endif
           </div>
           <!-- /.card-body -->
         </div>
         <!-- /.card -->
       </div>
-
+      
       <div class="col-md-4">
         @include('admin.tags.add')
       </div>
     </div>
-
-    @foreach ($tags as $tag)
-      @include('admin.tags.edit')
-    @endforeach
   </section>
+@endsection
+
+@section('modals')
+  @foreach ($tags as $tag)
+    @include('admin.tags.edit')
+  @endforeach
 @endsection
 
 <script>

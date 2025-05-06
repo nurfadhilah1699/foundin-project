@@ -81,12 +81,14 @@
         @include('admin.users.verify')
       </div>
     </div>
+  </section>
+@endsection
 
+@section('modals')
     <!-- Modal Edit User -->
     @foreach ($users as $user)
       @include('admin.users.edit', ['user' => $user])
     @endforeach
-  </section>
 @endsection
 
 <script>
