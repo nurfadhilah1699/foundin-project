@@ -20,9 +20,11 @@ class AdminTagController extends Controller
             'name' => ['required', 'string', 'max:255'],
         ]);
 
-        Tag::create([
-            'name' => $request->name,
-        ]);
+        $tag = Tag::firstOrCreate(['name' => $request->name]);
+
+        if (!$tag->wasRecentlyCreated) {
+            return redirect()->route('admin.tags.index')->with('error', 'Tag sudah ada!');
+        }
 
         return redirect()->route('admin.tags.index')->with('success', 'Tag berhasil ditambahkan!');
     }

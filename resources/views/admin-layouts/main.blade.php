@@ -27,6 +27,9 @@
   <link rel="stylesheet" href="{{ asset('admin-lte') }}/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="{{ asset('admin-lte') }}/plugins/summernote/summernote-bs4.min.css">
+  <!-- toastr -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet"/>
+
 
   <style>
     html, body {
@@ -66,7 +69,7 @@
 <body class="hold-transition sidebar-mini layout-fixed">
     <div class="wrapper">
 
-    <!-- Preloader -->
+        <!-- Preloader -->
         <div class="preloader flex-column justify-content-center align-items-center">
             <img class="animation__shake" src="{{ asset('impact') }}/assets/img/favicon-fi.png" alt="FoundIn Logo" height="60" width="60">
         </div>
@@ -112,6 +115,9 @@
     <script src="{{ asset('admin-lte') }}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- bs-custom-file-input -->
     <script src="{{ asset('admin-lte') }}/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
+    <!-- Toastr -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('admin-lte') }}/dist/js/adminlte.js"></script>
     <!-- Ion Icons -->
@@ -122,5 +128,18 @@
           bsCustomFileInput.init();
         });
     </script>
+    <script>
+        @if (session('success'))
+            toastr.success("{{ session('success') }}");
+        @endif
+    
+        @if (session('warning'))
+            toastr.error("{{ session('warning') }}");
+        @endif
+
+        @if (session('error'))
+            toastr.error("{{ session('error') }}");
+        @endif
+    </script>    
 </body>
 </html>
