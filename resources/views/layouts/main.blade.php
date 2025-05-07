@@ -60,7 +60,7 @@
       <div class="container d-flex justify-content-center justify-content-md-between">
         <div class="contact-info d-flex align-items-center">
           <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:foundinhelpdesk@gmail.com">foundinhelpdesk@gmail.com</a></i>
-          <i class="bi bi-phone d-flex align-items-center ms-4"><span>+62 823 9435 6836</span></i>
+          <i class="bi bi-phone d-flex align-items-center ms-4"><span>+62 823 4567 8901</span></i>
         </div>
         <div class="social-links d-none d-md-flex align-items-center">
           <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>

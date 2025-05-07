@@ -150,7 +150,7 @@
             <i class="bi bi-telephone flex-shrink-0"></i>
             <div>
               <h3>Call Us</h3>
-              <p>+62 823 9435 6836</p>
+              <p>+62 823 4567 8901</p>
             </div>
           </div><!-- End Info Item -->
 
