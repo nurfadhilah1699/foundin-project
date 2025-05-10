@@ -55,6 +55,52 @@
             </table>
           </div>
           <!-- /.card-body -->
+          <div class="card-footer clearfix">
+            <ul class="pagination pagination-sm m-0 float-right">
+              {{-- Previous Page Link --}}
+              @if ($tags->onFirstPage())
+                <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+              @else
+                <li class="page-item"><a class="page-link" href="{{ $tags->previousPageUrl() }}">&laquo;</a></li>
+              @endif
+              
+              {{-- Pagination Elements --}}
+              @php
+                $start = max($tags->currentPage() - 2, 1);
+                $end = min($tags->currentPage() + 2, $tags->lastPage());
+              @endphp
+
+              @if($start > 1)
+                <li class="page-item"><a class="page-link" href="{{ $tags->url(1) }}">1</a></li>
+                @if($start > 2)
+                  <li class="page-item">...</li>
+                @endif
+              @endif
+                
+              @for ($page = $start; $page <= $end; $page++)
+                @if ($page == $tags->currentPage())
+                    <li class="page-item"><a class="page-link" href="{{ $tags->url($page) }}" class="active">{{ $page }}</a></li>
+                @else
+                    <li class="page-item"><a class="page-link" href="{{ $tags->url($page) }}">{{ $page }}</a></li>
+                    @endif
+              @endfor
+              
+              @if($end < $tags->lastPage())
+                @if($end < $tags->lastPage() - 1)
+                  <li class="page-item">...</li>
+                @endif
+                  <li class="page-item"><a class="page-link" href="{{ $tags->url($tags->lastPage()) }}">{{ $tags->lastPage() }}</a></li>
+              @endif
+
+              {{-- Next Page Link --}}
+              @if ($tags->hasMorePages())
+                <li class="page-item"><a class="page-link" href="{{ $tags->nextPageUrl() }}">&raquo;</a></li>
+              @else
+                <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+              @endif
+            </ul>
+          </div>
+          <!-- /.card-footer -->
         </div>
         <!-- /.card -->
       </div>

@@ -64,11 +64,57 @@
                 <p class="p-3">No users found.</p>
             @endif
 
-            <div class="p-3">
+            {{-- <div class="p-3">
               {{ $users->links() }}
-            </div>
+            </div> --}}
           </div>
           <!-- /.card-body -->
+          <div class="card-footer clearfix">
+            <ul class="pagination pagination-sm m-0 float-right">
+              {{-- Previous Page Link --}}
+              @if ($users->onFirstPage())
+                <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+              @else
+                <li class="page-item"><a class="page-link" href="{{ $users->previousPageUrl() }}">&laquo;</a></li>
+              @endif
+              
+              {{-- Pagination Elements --}}
+              @php
+                $start = max($users->currentPage() - 2, 1);
+                $end = min($users->currentPage() + 2, $users->lastPage());
+              @endphp
+
+              @if($start > 1)
+                <li class="page-item"><a class="page-link" href="{{ $users->url(1) }}">1</a></li>
+                @if($start > 2)
+                  <li class="page-item">...</li>
+                @endif
+              @endif
+                
+              @for ($page = $start; $page <= $end; $page++)
+                @if ($page == $users->currentPage())
+                  <li class="page-item"><a class="page-link" href="{{ $users->url($page) }}" class="active">{{ $page }}</a></li>
+                @else
+                  <li class="page-item"><a class="page-link" href="{{ $users->url($page) }}">{{ $page }}</a></li>
+                @endif
+              @endfor
+              
+              @if($end < $users->lastPage())
+                @if($end < $users->lastPage() - 1)
+                  <li class="page-item">...</li>
+                @endif
+                  <li class="page-item"><a class="page-link" href="{{ $users->url($users->lastPage()) }}">{{ $users->lastPage() }}</a></li>
+              @endif
+
+              {{-- Next Page Link --}}
+              @if ($users->hasMorePages())
+                <li class="page-item"><a class="page-link" href="{{ $users->nextPageUrl() }}">&raquo;</a></li>
+              @else
+                <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+              @endif
+            </ul>
+          </div>
+          <!-- /.card-footer -->
         </div>
         <!-- /.card -->
       </div>

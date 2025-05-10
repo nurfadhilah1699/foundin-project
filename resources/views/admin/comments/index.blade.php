@@ -58,6 +58,52 @@
             @endif
           </div>
           <!-- /.card-body -->
+          <div class="card-footer clearfix">
+            <ul class="pagination pagination-sm m-0 float-right">
+              {{-- Previous Page Link --}}
+              @if ($comments->onFirstPage())
+                <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+              @else
+                <li class="page-item"><a class="page-link" href="{{ $comments->previousPageUrl() }}">&laquo;</a></li>
+              @endif
+              
+              {{-- Pagination Elements --}}
+              @php
+                $start = max($comments->currentPage() - 2, 1);
+                $end = min($comments->currentPage() + 2, $comments->lastPage());
+              @endphp
+
+              @if($start > 1)
+                <li class="page-item"><a class="page-link" href="{{ $comments->url(1) }}">1</a></li>
+                @if($start > 2)
+                  <li class="page-item">...</li>
+                @endif
+              @endif
+                
+              @for ($page = $start; $page <= $end; $page++)
+                @if ($page == $comments->currentPage())
+                  <li class="page-item"><a class="page-link" href="{{ $comments->url($page) }}" class="active">{{ $page }}</a></li>
+                @else
+                  <li class="page-item"><a class="page-link" href="{{ $comments->url($page) }}">{{ $page }}</a></li>
+                @endif
+              @endfor
+              
+              @if($end < $comments->lastPage())
+                @if($end < $comments->lastPage() - 1)
+                  <li class="page-item">...</li>
+                @endif
+                  <li class="page-item"><a class="page-link" href="{{ $comments->url($comments->lastPage()) }}">{{ $comments->lastPage() }}</a></li>
+              @endif
+
+              {{-- Next Page Link --}}
+              @if ($comments->hasMorePages())
+                <li class="page-item"><a class="page-link" href="{{ $comments->nextPageUrl() }}">&raquo;</a></li>
+              @else
+                <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+              @endif
+            </ul>
+          </div>
+          <!-- /.card-footer -->
         </div>
         <!-- /.card -->
       </div>
