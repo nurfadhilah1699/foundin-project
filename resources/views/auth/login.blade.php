@@ -88,7 +88,7 @@
               </div>
               <!-- /.col -->
               <div class="col-4">
-                <button type="submit" class="btn btn-primary btn-block">Log In</button>
+                <button type="submit" class="btn btn-custom btn-block">Log In</button>
               </div>
               <!-- /.col -->
             </div>
@@ -96,10 +96,7 @@
     
           <div class="social-auth-links text-center mb-3">
             <p>- OR -</p>
-            <a href="#" class="btn btn-block btn-primary">
-              <i class="fab fa-facebook mr-2"></i> Log in using Facebook
-            </a>
-            <a href="#" class="btn btn-block btn-danger">
+            <a href="#" class="btn btn-block btn-custom">
               <i class="fab fa-google mr-2"></i> Log in using Google
             </a>
           </div>
@@ -111,7 +108,7 @@
             @endif
           </p>
           <p class="mb-0">
-            <a href="{{ route('register') }}" class="text-center">Register a new membership</a>
+            <a href="{{ route('register') }}" class="text-center">Register a new account</a>
           </p>
         </div>
         <!-- /.login-card-body -->
