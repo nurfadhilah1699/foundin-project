@@ -8,9 +8,16 @@ use Illuminate\Http\Request;
 
 class AdminTagController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $tags = Tag::withCount('posts')->paginate(10);
+        $search = $request->input('search');
+
+        $tags = Tag::withCount('posts')
+            ->when($search, function ($query, $search) {
+                $query->where('name', 'LIKE', "%{$search}%");
+            })
+            ->paginate(10);
+
         return view('admin.tags.index', compact('tags'));
     }
 

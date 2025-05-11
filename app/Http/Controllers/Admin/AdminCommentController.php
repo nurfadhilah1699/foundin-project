@@ -8,9 +8,20 @@ use Illuminate\Http\Request;
 
 class AdminCommentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $comments = Comment::paginate(10);
+        $search = $request->input('search');
+
+        $comments = Comment::with('user')
+            ->when($search, function ($query, $search) {
+                $query->where('content', 'LIKE', "%{$search}%")
+                    ->orWhereHas('user', function ($q) use ($search) {
+                        $q->where('name', 'LIKE', "%{$search}%")
+                        ->orWhere('email', 'LIKE', "%{$search}%");
+                    });
+            })
+            ->paginate(10);
+        
         return view('admin.comments.index', compact('comments'));
     }
 

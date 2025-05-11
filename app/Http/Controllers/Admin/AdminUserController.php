@@ -14,9 +14,16 @@ use Illuminate\View\View;
 
 class AdminUserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::paginate(10);
+        $search = $request->input('search');
+
+        $users = User::when($search, function ($query, $search) {
+                $query->where('name', 'LIKE', "%{$search}%")
+                    ->orWhere('email', 'LIKE', "%{$search}%");
+                })
+                ->paginate(10);
+        
         return view('admin.users.index', compact('users'));
     }
 

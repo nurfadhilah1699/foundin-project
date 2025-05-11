@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminCommentController;
 use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminTagController;
+use App\Http\Controllers\Admin\SearchController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
@@ -24,6 +25,9 @@ Route::get('/', [PostController::class, 'getRecentPosts'])->name('home');
 Route::middleware(['auth', 'verified', 'admin'])->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.admin-dashboard'); })->name('dashboard');
+
+    //Search 
+    Route::get('/admin/search', [SearchController::class, 'index'])->name('admin.search.index');
 
     //Users
     Route::get('/admin/users', [AdminUserController::class, 'index'])->name('admin.users.index');
@@ -67,12 +71,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     //Post Comment
     Route::post('/posts/{post}/comments', [PostController::class, 'storeComment'])->name('posts.comments.store');
-});
-
-Route::middleware('auth')->group(function () {
-    //Email Verification 
-    Route::get('/email/verify', function () {
-        return view('auth.verify-email');})->name('verification.notice');
 });
 
 //=== User Post, Comment and Explore ===//

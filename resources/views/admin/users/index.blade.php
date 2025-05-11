@@ -6,6 +6,13 @@
 
 @section('content')
   <section class="content">
+    <!-- Search -->
+    <form action="{{ route('admin.users.index') }}" method="GET" class="form-inline mb-3">
+      <input type="text" name="search" value="{{ request('search') }}" class="form-control mr-2" placeholder="Search user...">
+      <button type="submit" class="btn btn-primary">Search</button>
+      <a href="{{ route('admin.users.index') }}" class="btn btn-secondary ml-2">Reset</a>
+    </form>
+
     <div class="row">
       <!-- List Users -->
       <div class="col-md-8">

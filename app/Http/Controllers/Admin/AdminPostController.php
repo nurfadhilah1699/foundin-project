@@ -8,9 +8,16 @@ use Illuminate\Http\Request;
 
 class AdminPostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::paginate(10);
+        $search = $request->input('search');
+
+        $posts = Post::when($search, function ($query, $search) {
+                $query->where('title', 'LIKE', "%{$search}%")
+                    ->orWhere('description', 'LIKE', "%{$search}%");
+                })
+                ->paginate(10);
+        
         return view('admin.posts.index', compact('posts'));
     }
 

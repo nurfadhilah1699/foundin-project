@@ -8,9 +8,16 @@ use Illuminate\Http\Request;
 
 class AdminCategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::withCount('posts')->paginate(10);
+        $search = $request->input('search');
+
+        $categories = Category::withCount('posts')
+            ->when($search, function ($query, $search) {
+                $query->where('name', 'LIKE', "%{$search}%");
+            })
+            ->paginate(10);
+            
         return view('admin.categories.index', compact('categories'));
     }
 

@@ -7,6 +7,13 @@
 @section('content')
 
 <section class="content">
+    <!-- Search -->
+    <form action="{{ route('admin.tags.index') }}" method="GET" class="form-inline mb-3">
+      <input type="text" name="search" value="{{ request('search') }}" class="form-control mr-2" placeholder="Search tag...">
+      <button type="submit" class="btn btn-primary">Search</button>
+      <a href="{{ route('admin.tags.index') }}" class="btn btn-secondary ml-2">Reset</a>
+    </form>
+
     <div class="row">
       <div class="col-md-8">
         <div class="card card-info">
