@@ -55,7 +55,7 @@
 
             <div class="description">
 
-              <p>{{ $post->description }}</p>
+              <p>{!! \App\Helpers\FormatTextHelper::formatText($post->description, 'p') !!}</p>
 
             </div><!-- End post content -->
 
