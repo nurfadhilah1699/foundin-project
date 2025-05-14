@@ -16,7 +16,7 @@ class FormatTextHelper
         $text = e($text);
 
         // Daftar valid domain extension yang didukung
-        $validExtensions = 'com|net|org|id|co\.id|io|dev|ai|xyz|info';
+        $validExtensions = 'com|net|org|id|co\.id|io|dev|ai|xyz|info|biz|my\.id';
 
         // Regex untuk link: http/https, www, atau domain valid
         $pattern = '/((https?:\/\/|www\.)[^\s]+|[a-z0-9\-]+\.(?:' . $validExtensions . ')(\/[^\s]*)?)/i';
