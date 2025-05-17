@@ -1,4 +1,4 @@
-<section class="space-y-6">
+{{-- <section class="space-y-6">
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
             {{ __('Delete Account') }}
@@ -52,4 +52,12 @@
             </div>
         </form>
     </x-modal>
-</section>
+</section> --}}
+
+<div class="border-top pt-4 mt-4">
+    <h4>Hapus Akun</h4>
+    <p class="text-muted">Tindakan ini akan menghapus semua data akun Anda secara permanen dan tidak dapat dibatalkan.</p>
+    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+        Hapus Akun
+    </button>
+</div>

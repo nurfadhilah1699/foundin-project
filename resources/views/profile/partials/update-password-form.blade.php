@@ -1,4 +1,4 @@
-<section>
+{{-- <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
             {{ __('Update Password') }}
@@ -45,4 +45,28 @@
             @endif
         </div>
     </form>
-</section>
+</section> --}}
+
+<div class="border-top pt-4">
+    <h4>Ubah Password</h4>
+    <p>Pastikan untuk menggunakan password yang kuat dan unik</p>
+
+    <form id="passwordForm">
+        <div class="mb-3">
+            <label for="currentPassword" class="form-label">Password Saat Ini</label>
+            <input type="password" class="form-control" id="currentPassword">
+        </div>
+        <div class="mb-3">
+            <label for="newPassword" class="form-label">Password Baru</label>
+            <input type="password" class="form-control" id="newPassword">
+            <div class="form-text">Password harus terdiri dari minimal 8 karakter dengan kombinasi huruf, angka, dan simbol.</div>
+        </div>
+        <div class="mb-3">
+            <label for="confirmPassword" class="form-label">Konfirmasi Password Baru</label>
+            <input type="password" class="form-control" id="confirmPassword">
+        </div>
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary" id="changePasswordBtn" style="background-color:#008374; border-color:#008374;">Ubah Password</button>
+        </div>
+    </form>
+</div>

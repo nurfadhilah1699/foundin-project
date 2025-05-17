@@ -6,7 +6,6 @@ use App\Http\Controllers\Admin\AdminPostController;
 use App\Http\Controllers\Admin\AdminTagController;
 use App\Http\Controllers\Admin\SearchController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminUserController;
@@ -60,11 +59,6 @@ Route::middleware(['auth', 'verified', 'admin'])->group(function () {
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    //Profile
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
     //Post Content
     Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');

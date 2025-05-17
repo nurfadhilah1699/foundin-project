@@ -22,6 +22,7 @@
   <link href="{{ asset('impact') }}/assets/vendor/aos/aos.css" rel="stylesheet">
   <link href="{{ asset('impact') }}/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="{{ asset('impact') }}/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
   <!-- Main CSS File -->
   <link href="{{ asset('impact') }}/assets/css/main.css" rel="stylesheet">
@@ -137,16 +138,11 @@
 
     <!-- Hero or Page Title-->
     @yield('hero')
-
-    <!-- Alert success-->
-    @if (session('success'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-      {{ session('success') }}
-    </div>
-    @endif
     
     <!-- Begin Page Content -->
     @yield('content')
+
+  </main>
 
   <footer id="footer" class="footer accent-background">
 
@@ -222,10 +218,27 @@
   <script src="{{ asset('impact') }}/assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="{{ asset('impact') }}/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="{{ asset('impact') }}/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-
+  
+  
   <!-- Main JS File -->
   <script src="{{ asset('impact') }}/assets/js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  
   @yield('scripts')
+  <script>
+    @if (session('success'))
+        toastr.success("{{ session('success') }}");
+    @endif
+
+    @if (session('warning'))
+        toastr.error("{{ session('warning') }}");
+    @endif
+
+    @if (session('error'))
+        toastr.error("{{ session('error') }}");
+    @endif
+</script>   
+  </script>
 
 </body>
 

@@ -50,63 +50,63 @@
 
     <div class="row gx-lg-0 gy-4">
 
-    <div class="col-lg-12">
-        <form action="{{ route('posts.store') }}" method="POST" class="php-email-form" data-aos="fade" data-aos-delay="100" enctype="multipart/form-data" @if (!auth()->check()) style="display:none;" @endif>
+      <div class="col-lg-12">
+          <form action="{{ route('posts.store') }}" method="POST" class="php-email-form" data-aos="fade" data-aos-delay="100" enctype="multipart/form-data" @if (!auth()->check()) style="display:none;" @endif>
 
-            @csrf
-            <div class="row gy-4">
+              @csrf
+              <div class="row gy-4">
 
-            <div class="col-md-12">
-                <input type="file" class="form-control" id="image" name="image">
-                @error('image')
-                  <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="col-md-12">
-                <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" required>
-                @error('title')
-                  <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="col-md-12">
-                <textarea class="form-control" id="description" name="description" rows="5" placeholder="Enter description" required></textarea>
-                @error('description')
-                  <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
-
-            <div class="col-md-12">
-                <label for="categories">Category</label>
-                <select class="form-control" id="categories" name="category_id" required>
-                    <option value="">Select a category</option>
-                    @foreach(\App\Models\Category::all() as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach
-                </select>
-                @error('category_id')
+              <div class="col-md-12">
+                  <input type="file" class="form-control" id="image" name="image">
+                  @error('image')
                     <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
+                  @enderror
+              </div>
 
-            <div class="col-md-12">
-                <label for="tags">Tags</label>
-                <input type="text" class="form-control" id="tags" name="tags" placeholder="Add tags separated by commas">
-                @error('tags')
+              <div class="col-md-12">
+                  <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" required>
+                  @error('title')
                     <div class="text-danger">{{ $message }}</div>
-                @enderror
-            </div>
+                  @enderror
+              </div>
 
-            <div class="col-md-12 text-center">
-              <div id="form-loading" style="display:none">Loading</div>
-              <div id="form-success" style="display:none" class="sent-message">Post created!</div>
-              <div id="form-error" style="display:none" class="error-message">Something went wrong!</div>
+              <div class="col-md-12">
+                  <textarea class="form-control" id="description" name="description" rows="5" placeholder="Enter description" required></textarea>
+                  @error('description')
+                    <div class="text-danger">{{ $message }}</div>
+                  @enderror
+              </div>
 
-              <button type="submit">Post</button>
-            </div>
-        </form>
-    </div><!-- End Post Form -->
+              <div class="col-md-12">
+                  <label for="categories">Category</label>
+                  <select class="form-control" id="categories" name="category_id" required>
+                      <option value="">Select a category</option>
+                      @foreach(\App\Models\Category::all() as $category)
+                          <option value="{{ $category->id }}">{{ $category->name }}</option>
+                      @endforeach
+                  </select>
+                  @error('category_id')
+                      <div class="text-danger">{{ $message }}</div>
+                  @enderror
+              </div>
+
+              <div class="col-md-12">
+                  <label for="tags">Tags</label>
+                  <input type="text" class="form-control" id="tags" name="tags" placeholder="Add tags separated by commas">
+                  @error('tags')
+                      <div class="text-danger">{{ $message }}</div>
+                  @enderror
+              </div>
+
+              <div class="col-md-12 text-center">
+                <div id="form-loading" style="display:none">Loading</div>
+                <div id="form-success" style="display:none" class="sent-message">Post created!</div>
+                <div id="form-error" style="display:none" class="error-message">Something went wrong!</div>
+
+                <button type="submit">Post</button>
+              </div>
+          </form>
+      </div><!-- End Post Form -->
 
     </div>
 
