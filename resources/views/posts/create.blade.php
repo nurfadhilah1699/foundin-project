@@ -116,7 +116,7 @@
 <!-- /Post Section -->
 @endsection
 
-@section('scripts')
+@push('scripts')
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     const form = document.querySelector('.php-email-form');
@@ -130,5 +130,5 @@
     }
   });
 </script>
-@endsection
+@endpush
 

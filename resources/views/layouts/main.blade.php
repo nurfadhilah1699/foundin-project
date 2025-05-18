@@ -224,7 +224,7 @@
   <script src="{{ asset('impact') }}/assets/js/main.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
   
-  @yield('scripts')
+  @stack('scripts')
   <script>
     @if (session('success'))
         toastr.success("{{ session('success') }}");
