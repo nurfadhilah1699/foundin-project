@@ -30,6 +30,16 @@
                     <p class="text-muted mb-0">Kelola informasi profil dan pengaturan akun Anda</p>
                 </div>
 
+                @if (session('status') === 'profile-updated')
+                    <div class="alert alert-success" role="alert">
+                        Profil berhasil diperbarui.
+                    </div>
+                @elseif ($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                        Terjadi kesalahan saat memperbarui profil. Silakan periksa kembali input Anda.
+                    </div>
+                @endif
+
                 <ul class="nav nav-tabs mb-4" id="profileTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link active" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-pane" type="button" role="tab" aria-controls="profile-pane" aria-selected="true">Profil</button>
@@ -56,7 +66,7 @@
 </section>
 @endsection
 
-@section('scripts')
+@push('scripts')
 <script>
     @if (session('status') === 'verification-link-sent')
         toastr.success("Link verifikasi baru sudah dikirim ke email kamu.");
@@ -72,7 +82,5 @@
             reader.readAsDataURL(file);
         }
     });
-
 </script>
-
-@endsection
+@endpush

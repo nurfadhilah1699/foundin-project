@@ -56,8 +56,40 @@
 
 <div class="border-top pt-4 mt-4">
     <h4>Hapus Akun</h4>
-    <p class="text-muted">Tindakan ini akan menghapus semua data akun Anda secara permanen dan tidak dapat dibatalkan.</p>
+    <p class="text-muted">
+        Tindakan ini akan menghapus semua data akun Anda secara permanen dan tidak dapat dibatalkan. Pastikan Anda sudah menyimpan data penting sebelum melanjutkan.
+    </p>
     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
         Hapus Akun
     </button>
+</div>
+
+<!-- Modal Konfirmasi -->
+<div class="modal fade" id="deleteAccountModal" tabindex="-1" aria-labelledby="deleteAccountModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form method="POST" action="{{ route('profile.destroy') }}">
+        @csrf
+        @method('DELETE')
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteAccountModalLabel">Konfirmasi Hapus Akun</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+            </div>
+            <div class="modal-body">
+                <p>Apakah Anda yakin ingin menghapus akun? Tindakan ini tidak dapat dibatalkan.</p>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Masukkan Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                    @error('password')
+                        <div class="text-danger mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                <button type="submit" class="btn btn-danger">Hapus Akun</button>
+            </div>
+        </div>
+    </form>
+  </div>
 </div>
