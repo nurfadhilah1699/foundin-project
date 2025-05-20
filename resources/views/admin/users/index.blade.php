@@ -6,16 +6,20 @@
 
 @section('content')
   <section class="content">
-    <!-- Search -->
-    <form action="{{ route('admin.users.index') }}" method="GET" class="form-inline mb-3">
-      <input type="text" name="search" value="{{ request('search') }}" class="form-control mr-2" placeholder="Search user...">
-      <button type="submit" class="btn btn-primary">Search</button>
-      <a href="{{ route('admin.users.index') }}" class="btn btn-secondary ml-2">Reset</a>
-    </form>
+    <div class="row">
+      <div class="col-md-6">
+        <!-- Search -->
+        <form action="{{ route('admin.users.index') }}" method="GET" class="form-inline mb-3">
+          <input type="text" name="search" value="{{ request('search') }}" class="form-control mr-2" placeholder="Search user...">
+          <button type="submit" class="btn btn-primary">Search</button>
+          <a href="{{ route('admin.users.index') }}" class="btn btn-secondary ml-2">Reset</a>
+        </form>
+      </div>
+    </div>
 
     <div class="row">
       <!-- List Users -->
-      <div class="col-md-8">
+      <div class="col-md-12">
         <div class="card card-info">
           <div class="card-header">
             <h3 class="card-title">Users List</h3>
@@ -25,8 +29,10 @@
               <thead>
                 <tr>
                   <th>ID</th>
+                  <th>Profile Picture</th>
                   <th>Name</th>
                   <th>Email</th>
+                  <th>Bio</th>
                   <th>Verification</th>
                   <th>Role</th>
                   <th>Action</th>
@@ -36,8 +42,16 @@
                 @foreach ($users as $index => $user)
                 <tr>
                   <td>{{ $index + 1 }}</td>
+                  <td>
+                    @if($user->profile_picture)
+                    <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="{{ $user->title }}" height="50">
+                    @else
+                    <i>No image available</i>
+                    @endif
+                  </td>
                   <td>{{ $user->name }}</td>
                   <td>{{ $user->email }}</td>
+                  <td>{{ $user->bio }}</td>
                   @if ($user->email_verified_at == null)
                     <td><i class="fas fa-times text-danger"></i></td> 
                     @else
@@ -70,10 +84,6 @@
             @if($users->isEmpty())
                 <p class="p-3">No users found.</p>
             @endif
-
-            {{-- <div class="p-3">
-              {{ $users->links() }}
-            </div> --}}
           </div>
           <!-- /.card-body -->
           <div class="card-footer clearfix">
@@ -125,11 +135,14 @@
         </div>
         <!-- /.card -->
       </div>
+    </div>
 
-      <!-- Add User -->
-      <div class="col-md-4">
+    <div class="row">
+      <div class="col-md-6">
+        <!-- Add User -->
         @include('admin.users.add')
-
+      </div>
+      <div class="col-md-6">
         <!-- Verify Email -->
         @include('admin.users.verify')
       </div>

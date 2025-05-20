@@ -1,8 +1,15 @@
 <div id="comment-{{ $comment->id }}" class="comment" style="margin-left: {{ $comment->parent_id ? '40px' : '0' }};">
   <div class="d-flex">
-    <div class="comment-img">
-      <img src="{{ asset('impact/assets/img/blog/comments-1.jpg') }}" alt="User Avatar">
-    </div>
+    @if($comment->user->profile_picture)
+      <div class="comment-img">
+        <img src="{{ asset('storage/' . $comment->user->profile_picture) }}" alt="User Avatar">
+      </div>
+    @else
+      <div class="comment-img">
+        <img src="{{ asset('impact') }}/assets/img/default-avatar-icon.jpg" alt="User Avatar">
+      </div>
+    @endif
+
     <div>
       <h5>
         <a href="#">{{ $comment->user ? $comment->user->name : 'Unknown' }}</a>

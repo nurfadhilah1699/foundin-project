@@ -46,12 +46,12 @@
             </div>
           </form>
     
-          <div class="social-auth-links text-center mb-3">
+          {{-- <div class="social-auth-links text-center mb-3">
             <p>- OR -</p>
             <a href="#" class="btn btn-block btn-custom">
               <i class="fab fa-google mr-2"></i> Log in using Google
             </a>
-          </div>
+          </div> --}}
           <!-- /.social-auth-links -->
     
           <p class="mb-1">

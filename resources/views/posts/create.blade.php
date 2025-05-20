@@ -8,7 +8,7 @@
         <div class="row d-flex justify-content-center text-center">
           <div class="col-lg-8">
             <h1>Create Post</h1>
-            <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
+            <p class="mb-0">Tambah Informasi Kursus dan Pelatihan Baru</p>
           </div>
         </div>
       </div>
@@ -43,6 +43,7 @@
     @if(session('success'))
       <div class="alert alert-success">{{ session('success') }}</div>
     @endif
+
     @if(session('error'))
       <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
@@ -55,12 +56,12 @@
 
               @csrf
               <div class="row gy-4">
-
+                
               <div class="col-md-12">
-                  <input type="file" class="form-control" id="image" name="image">
-                  @error('image')
-                    <div class="text-danger">{{ $message }}</div>
-                  @enderror
+                <input type="file" class="form-control" id="image" name="image">
+                @error('image')
+                  <div class="text-danger">{{ $message }}</div>
+                @enderror
               </div>
 
               <div class="col-md-12">

@@ -9,9 +9,9 @@
     <div class="row gy-5 justify-content-between">
       <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
         <h2><span>Welcome to </span><span class="accent">FoundIn</span></h2>
-        <p>Temukan berbagai info menarik terkait kursus dan pelatihan disini, dan kembangkan skillmu!</p>
+        <p>Temukan berbagai info menarik terkait kursus dan pelatihan IT disini, dan kembangkan skillmu!</p>
         <div class="d-flex">
-          <a href="#about" class="btn-get-started">Get Started</a>
+          <a href="#recent-posts" class="btn-get-started">Get Started</a>
         </div>
       </div>
       <div class="col-lg-5 order-1 order-lg-2">
@@ -100,7 +100,11 @@
           </h2>
 
           <div class="d-flex align-items-center">
-            <img src="{{ asset('impact/assets/img/blog/blog-author.jpg') }}" alt="Author" class="img-fluid post-author-img flex-shrink-0">
+            @if($post->user->profile_picture)
+              <img src="{{ asset('storage/' . $post->user->profile_picture) }}" alt="Author" class="img-fluid post-author-img flex-shrink-0">
+            @else
+              <img src="{{ asset('impact') }}/assets/img/default-avatar-icon.jpg" alt="Author" class="img-fluid post-author-img flex-shrink-0">
+            @endif
             <div class="post-meta">
               <p class="post-author">{{ $post->user->name ?? 'Unknown' }}</p>
               <p class="post-date">
@@ -142,7 +146,7 @@
             <i class="bi bi-geo-alt flex-shrink-0"></i>
             <div>
               <h3>Address</h3>
-              <p>Jl. Poros Majene-Mamuju, Sendana, Kab. Majene, Sulawesi Barat 91452</p>
+              <p>Jl. Poros Majene-Mamuju, Majene, Sulawesi Barat</p>
             </div>
           </div><!-- End Info Item -->
 

@@ -63,6 +63,8 @@
           <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:foundinhelpdesk@gmail.com">foundinhelpdesk@gmail.com</a></i>
           <i class="bi bi-phone d-flex align-items-center ms-4"><span>+62 823 4567 8901</span></i>
         </div>
+
+        {{-- Link social media --}}
         <div class="social-links d-none d-md-flex align-items-center">
           <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
           <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
@@ -85,7 +87,7 @@
             <li><a href="/" class="active">Home<br></a></li>
             <li><a href="/explore">Explore</a></li>
             <li><a href="/posts/create">Create Post</a></li>
-            <li><a href="#contact">Help</a></li>
+            <li><a href="/#contact">Help</a></li>
             @if (Route::has('login'))
                 @auth
                   @if (Auth::user()->role == 'admin')
@@ -152,7 +154,7 @@
           <a href="/" class="logo d-flex align-items-center">
             <span class="sitename">FoundIn</span>
           </a>
-          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+          <p>Dapatkan informasi lengkap tentang pelatihan dan kursus teknologi terkini di sini, dan tingkatkan keterampilan Anda dalam pengembangan web, mobile, dan banyak bidang lainnya.</p>
           <div class="social-links d-flex mt-4">
             <a href=""><i class="bi bi-facebook"></i></a>
             <a href=""><i class="bi bi-instagram"></i></a>
@@ -172,10 +174,10 @@
         <div class="col-lg-2 col-6 footer-links">
           <h4>Courses Information</h4>
           <ul>
-            <li><a href="#">Front-End Web</a></li>
-            <li><a href="#">Back-End Web</a></li>
-            <li><a href="#">Machine Learning</a></li>
-            <li><a href="#">Android Developer</a></li>
+            <li><a href="/explore?category=1">Front-End Web</a></li>
+            <li><a href="/explore?category=2">Back-End Web</a></li>
+            <li><a href="/explore?category=3">Machine Learning</a></li>
+            <li><a href="4/explore?category=4">Android Developer</a></li>
           </ul>
         </div>
 
@@ -184,7 +186,7 @@
           <p>Jl. Poros Majene-Mamuju, Sendana</p>
           <p>Kab. Majene, Sulawesi Barat 91452</p>
           <p>Indonesia</p>
-          <p class="mt-4"><strong>Phone:</strong> <span>+62 823 9435 6836</span></p>
+          <p class="mt-4"><strong>Phone:</strong> <span>+62 823 4567 8901</span></p>
           <p><strong>Email:</strong> <span>foundinhelpdesk@gmail.com</span></p>
         </div>
 

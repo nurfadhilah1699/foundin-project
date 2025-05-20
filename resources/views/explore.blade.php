@@ -8,7 +8,7 @@
                 <div class="row d-flex justify-content-center text-center">
                     <div class="col-lg-8">
                         <h1>Explore</h1>
-                        <p class="mb-0">Browse all posts from newest to oldest.</p>
+                        <p class="mb-0">Eksplorasi Info Pelatihan & Kursus</p>
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
                             </h2>
 
                             <div class="d-flex align-items-center">
-                                <img src="{{ asset('impact/assets/img/blog/blog-author.jpg') }}" alt="Author" class="img-fluid post-author-img flex-shrink-0">
+                                <img src="{{ $post->user && $post->user->profile_picture ? asset('storage/' . $post->user->profile_picture) : asset('impact/assets/img/default-avatar-icon.jpg') }}" alt="Author" class="img-fluid post-author-img flex-shrink-0">
                                 <div class="post-meta">
                                     <p class="post-author">{{ $post->user->name ?? 'Unknown' }}</p>
                                     <p class="post-date">
