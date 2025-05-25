@@ -20,7 +20,11 @@
                   <span class="fas fa-envelope"></span>
                 </div>
               </div>
+              @error('email')
+                <div class="text-danger">{{ $message }}</div>
+              @enderror
             </div>
+
             <div class="input-group mb-3">
               <input type="password" id="password" type="password" name="password" class="form-control" placeholder="Password">
               <div class="input-group-append">
@@ -28,7 +32,11 @@
                   <span class="fas fa-lock"></span>
                 </div>
               </div>
+              @error('password')
+                <div class="text-danger">{{ $message }}</div>
+              @enderror
             </div>
+
             <div class="row">
               <div class="col-8">
                 <div class="icheck-primary">

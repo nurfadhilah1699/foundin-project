@@ -31,7 +31,7 @@
                 <!-- Blog Posts Section -->
                 <section id="blog-posts" class="blog-posts section">
                 <div class="row gy-4">
-                    @foreach ($posts as $post)
+                    @forelse ($posts as $post)
                     <div class="col-sm-6">
                         <article>
 
@@ -67,7 +67,13 @@
 
                         </article>
                     </div><!-- End post list item -->
-                    @endforeach
+                    @empty
+                    <div class="col-12">
+                        <div class="text-center py-5">
+                            <h4>Belum ada konten tersedia.</h4>
+                        </div>
+                    </div>
+                    @endforelse
                 </div>
                 </section><!-- /Blog Posts Section -->
 

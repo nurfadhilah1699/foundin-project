@@ -11,6 +11,12 @@
         <div class="card-body login-card-body">
           <p class="login-box-msg">You forgot your password? Here you can easily retrieve a new password.</p>
     
+          @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+          @endif
+          
           <form method="POST" action="{{ route('password.email') }}">
             @csrf
             <div class="input-group mb-3">
@@ -20,6 +26,9 @@
                   <span class="fas fa-envelope"></span>
                 </div>
               </div>
+              @error('email')
+                <div class="alert alert-danger">{{ $message }}</div>
+              @enderror
             </div>
             <div class="row">
               <div class="col-12">
